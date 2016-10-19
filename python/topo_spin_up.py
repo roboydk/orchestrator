@@ -144,8 +144,12 @@ class VagrantRunner(TopologyRunner):
                     k = 0
                     if len(node['ports']) > 1:
                         for port in node['ports']:
-                            if port['type'] == 'ssh' or port['type'] == 'ssh_xr_shell':
-                                k = node['ports'].index(port)
+                            if node['os'] == 'linux/ubuntu':
+                                if port['type'] == 'ssh':
+                                    k = node['ports'].index(port)
+                            if node['os'] == 'cisco_iosxr':
+                                if port['type'] == 'ssh_xr_shell':
+                                    k = node['ports'].index(port)
                     h.write(node['name'] +
                             " ansible_ssh_host=127.0.0.1"
                             " ansible_ssh_port=" + str(node['ports'][k]['value']) +
