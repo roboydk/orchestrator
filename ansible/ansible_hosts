@@ -1,0 +1,7 @@
+#[network-nodes]
+#devbox_s ansible_ssh_host=127.0.0.1 ansible_ssh_port=2522 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+#devbox_r ansible_ssh_host=127.0.0.1 ansible_ssh_port=2523 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+#rtr1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2602 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+#rtr2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2604 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+#rtr3 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2606 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+
