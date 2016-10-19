@@ -1,0 +1,99 @@
+name: 3 nodes topology with 2 Tgens
+
+orchestration: vagrant
+
+
+nodes:
+
+  - name: devbox_s
+    type: tgen
+    os: linux_ubuntu
+    box: ubuntu/trusty64
+    mgmt_ip: localhost
+    username: vagrant
+    password: vagrant
+    ports:
+       - type: ssh
+         value: 2522
+    interfaces:
+      - interface: eth1
+        link-name: link1
+
+
+  - name: devbox_r
+    type: tgen
+    os: linux_ubuntu
+    box: ubuntu/trusty64
+    mgmt_ip: localhost
+    username: vagrant
+    password: vagrant
+    ports:
+      - type: ssh
+        value: 2523
+    interfaces:
+      - interface: eth1
+        link-name: link2
+
+  - name: rtr1
+    type: rtr
+    os: cisco_iosxr
+    box: ubuntu/trusty64
+    mgmt_ip: localhost
+    username: vagrant
+    password: vagrant
+    ports:
+      - type: ssh_xr
+        value: 2601
+      - type: ssh_xr_shell
+        value: 2602
+      - type: netconf
+        value: 8301
+    interfaces:
+       - interface: GigabitEthernet0/0/0/0
+         link-name: link1
+       - interface: GigabitEthernet0/0/0/1
+         link-name: link3
+       - interface: GigabitEthernet0/0/0/2
+         link-name: link5
+
+  - name: rtr2
+    type: rtr
+    os: cisco_iosxr
+    box: IOS-XRv
+    mgmt_ip: localhost
+    username: vagrant
+    password: vagrant
+    ports:
+      - type: ssh_xr
+        value: 2603
+      - type: ssh_xr_shell
+        value: 2604
+      - type: netconf
+        value: 8302
+    interfaces:
+       - interface: GigabitEthernet0/0/0/0
+         link-name: link3
+       - interface: GigabitEthernet0/0/0/1
+         link-name: link2
+       - interface: GigabitEthernet0/0/0/2
+         link-name: link4
+
+  - name: rtr3
+    type: rtr
+    os: cisco_iosxr
+    box: IOS-XRv
+    mgmt_ip: localhost
+    username: vagrant
+    password: vagrant
+    ports:
+      - type: ssh_xr
+        value: 2605
+      - type: ssh_xr_shell
+        value: 2606
+      - type: netconf
+        value: 8303
+    interfaces:
+       - interface: GigabitEthernet0/0/0/0
+         link-name: link4
+       - interface: GigabitEthernet0/0/0/1
+         link-name: link5
