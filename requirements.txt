@@ -3,3 +3,4 @@ python-vagrant
 robotframework
 schema
 vboxapi
+pykwalify
