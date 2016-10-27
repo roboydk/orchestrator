@@ -162,11 +162,12 @@ scheme = sys.argv[1]
 data_file = sys.argv[2]
 vr = VagrantRunner(scheme, data_file)
 vr.topology_spin_up(data_file)
-#
-# v = vagrant.Vagrant()
-# v.up()
-# env = {}
-# env.hosts = [v.user_hostname_port()]
-# env.key_filename = v.keyfile()
-# env.disable_known_hosts = True
-# print env
+
+
+with open(data_file, 'r') as stream:
+    topo_yaml = (yaml.load(stream))
+    if topo_yaml['orchestration'] == 'vagrant':
+        v = vagrant.Vagrant()
+        v.up()
+        env = {'hosts': [v.user_hostname_port()], 'key_filename': v.keyfile(), 'disable_known_hosts': True}
+        print env
