@@ -27,6 +27,8 @@ nodes:
     interfaces:
       - interface: eth1
         link-name: link2
+      - interface: eth2
+        link-name: link4
 
   - name: server_3
     type: tgen
@@ -38,37 +40,35 @@ nodes:
          value: 2523
     interfaces:
       - interface: eth1
-        link-name: link3
+        link-name: link4
 
-  - name: tor_1
-    type: tgen
+  - name: iosxrv9000-1
+    type: router
     os: linux_ubuntu
     box: ubuntu/trusty64
     mgmt_ip: localhost
     ports:
        - type: ssh
-         value: 2524
+         value: 22
     interfaces:
       - interface: eth1
         link-name: link1
       - interface: eth2
-        link-name: link4
-      - interface: eth3
-        link-name: link5
+        link-name: link3
 
-  - name: tor_2
-    type: tgen
+
+  - name: iosxrv9000-2
+    type: router
     os: linux_ubuntu
     box: ubuntu/trusty64
     mgmt_ip: localhost
     ports:
        - type: ssh
-         value: 2525
+         value: 22
     interfaces:
       - interface: eth1
-        link-name: link2
-      - interface: eth2
-        link-name: link6
+        link-name: link3
       - interface: eth3
-        link-name: link7
+        link-name: link2
+
 

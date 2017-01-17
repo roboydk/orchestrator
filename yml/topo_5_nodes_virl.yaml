@@ -1,0 +1,72 @@
+orchestration: virl
+
+
+nodes:
+
+  - name: iosxrv9000-1
+    type: rtr
+    os: cisco_iosxr
+    box: IOS-XRv
+    mgmt_ip: localhost
+    username: cisco
+    password: cisco
+    ports:
+      - type: ssh_xr
+        value: 2601
+      - type: netconf
+        value: 8301
+    interfaces:
+       - interface: GigabitEthernet0/0/0/0
+         link-name: link1
+       - interface: GigabitEthernet0/0/0/1
+         link-name: link2
+
+
+  - name: iosxrv9000-2
+    type: rtr
+    os: cisco_iosxr
+    box: IOS-XRv
+    mgmt_ip: localhost
+    username: cisco
+    password: cisco
+    ports:
+      - type: ssh_xr
+        value: 2603
+      - type: ssh_xr_shell
+        value: 2604
+      - type: netconf
+        value: 8302
+    interfaces:
+       - interface: GigabitEthernet0/0/0/0
+         link-name: link2
+       - interface: GigabitEthernet0/0/0/2
+         link-name: link3
+
+  - name: server_1
+    type: tgen
+    os: linux_ubuntu
+    box: ubuntu/trusty64
+    mgmt_ip: localhost
+    username: cisco
+    password: cisco
+    ports:
+       - type: ssh
+         value: 2525
+    interfaces:
+      - interface: eth1
+        link-name: link1
+
+
+  - name: server_2
+    type: tgen
+    os: linux_ubuntu
+    box: ubuntu/trusty64
+    mgmt_ip: localhost
+    username: cisco
+    password: cisco
+    ports:
+       - type: ssh
+         value: 2525
+    interfaces:
+      - interface: eth1
+        link-name: link3
